@@ -16,13 +16,44 @@
          * Ini chart.
          */
         function init(ctx: any, labels: any, items: any) {
-            const mod: number = screen.width > 768 ? Math.ceil(items.length / 5) : Math.ceil(items.length / 3);
+            let datalabels: any = [];
+            let datasets: any = [];
+            let start: number = 0;
+            let mod: number = 0;
+
+            // 90 4 -> 0, 89, 22.5, 45
+
+            if (window.innerWidth <= 480) {
+                start = labels.length - 30;
+                mod   = 30;
+            } else if (window.innerWidth <= 768) {
+                start = labels.length - 60;
+                mod   = 60 / 2;
+            } else if (window.innerWidth <= 1024) {
+                start = labels.length - 90;
+                mod   = 90 / 3;
+            } else {
+                start = 0;
+                mod   = Math.ceil(labels.length / 5);
+            }
+
+            datalabels = labels.filter((label: string, index: number) => {
+                if (index >= start) {
+                    return label;
+                }
+            });
+            datasets = items.filter((item: any, index: number) => {
+                if (index >= start) {
+                    return item;
+                }
+            });
+
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: datalabels,
                     datasets: [{
-                        data: items,
+                        data: datasets,
                         backgroundColor: 'transparent',
                         borderColor: '#ffffff',
                         pointBackgroundColor: '#f3ed2b'
@@ -35,10 +66,10 @@
                     scales: {
                         xAxes: [{
                             ticks: {
-                                callback: function(value, index, values) {
+                                callback: function(value: string, index: number) {
                                     if (index === 0) return value;
-                                    if (index === (items.length - 1)) return value;
-                                    if ((index + 1) % mod == 0) {
+                                    if (index === (datalabels.length - 1)) return value;
+                                    if ((index + 1) % mod === 0) {
                                         return value;
                                     }
                                     return '';
@@ -54,8 +85,8 @@
                         }],
                         yAxes: [{
                             ticks: {
-                                callback: function(value, index, values) {
-                                    return value === 0 ? value : (parseInt(value) / 1000) + 'K';
+                                callback: function(value: string) {
+                                    return parseInt(value) === 0 ? value : (parseInt(value) / 1000) + 'K';
                                 },
                                 fontColor: '#ffffff'
                             },

@@ -92,13 +92,13 @@
     .ui-province .province-table {
         margin: 40px auto 0;
         max-width: 960px;
-        overflow: hidden;
+        overflow: auto;
         background-color: #fff;
         border-radius: 6px;
         box-shadow: 1px 2px 6px rgba(0,0,0,.12);
     }
     .ui-province .province-table.table-collapse {
-        height: 474px;
+        height: 472px;
     }
     .ui-province .province-table table {
         width: 100%;
@@ -110,6 +110,7 @@
         font-weight: 500;
         line-height: 1.3;
         text-align: left;
+        white-space: nowrap;
         background-color: #f1f1f1;
     }
     .ui-province .province-table table tbody td {
@@ -123,6 +124,9 @@
         text-align: center;
     }
     @media (min-width: 768px) {
+        .ui-province .province-table {
+            overflow: hidden;
+        }
         .ui-province .province-table table thead th,
         .ui-province .province-table table tbody td {
             padding: 12px 16px;

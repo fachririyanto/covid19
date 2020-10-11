@@ -58,6 +58,7 @@
                 default:
                     value = 0;
             }
+            element.classList.remove('ui-placeholder');
             element.setAttribute('data-number', value);
             element.setAttribute('data-val', value - 30);
             animate(element);
@@ -68,15 +69,15 @@
 <section class="ui-bigstats" id="ui-bigstats">
     <div class="container">
         <div class="stats">
-            <h2 class="stats-number" id="stats-confirmed" data-val="320500" data-number="320524">0</h2>
+            <h2 class="stats-number ui-placeholder" id="stats-confirmed" data-val="0" data-number="0">0</h2>
             <p>Positif</p>
         </div>
         <div class="stats">
-            <h2 class="stats-number" id="stats-recovered" data-val="244030" data-number="244060">0</h2>
+            <h2 class="stats-number ui-placeholder" id="stats-recovered" data-val="0" data-number="0">0</h2>
             <p>Sembuh</p>
         </div>
         <div class="stats">
-            <h2 class="stats-number stats-danger" id="stats-deaths" data-val="11550" data-number="11580">0</h2>
+            <h2 class="stats-number stats-danger ui-placeholder" id="stats-deaths" data-val="0" data-number="0">0</h2>
             <p>Meninggal</p>
         </div>
     </div>

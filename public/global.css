@@ -51,6 +51,7 @@ a {
 .ui-editor p {
     margin: 0 0 16px;
     font-size: 1.575rem;
+    line-height: 1.5;
 }
 .ui-editor h3 {
     margin: 32px 0 8px;
@@ -72,4 +73,44 @@ a {
     border: 1px solid #222;
     cursor: pointer;
     box-shadow: 1px 2px 6px rgba(0,0,0,.12);
+}
+
+/**
+ * Placeholder.
+ */
+ @keyframes load {
+    from {
+        left: -150px;
+    }
+    to {
+        left: 100%;
+    }
+}
+.ui-placeholder {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+.ui-placeholder::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    content: '';
+    background-color: #ccc;
+}
+.ui-placeholder::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150px;
+    z-index: 2;
+    content: '';
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to right, #ccc 0%, #bbb 50%, #ccc 100%);
+    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
