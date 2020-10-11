@@ -14,14 +14,16 @@
     function toggle(e: any) {
         e.preventDefault();
 
-        const element: any = document.getElementById('table-province');
-        if (hasClass(element, 'table-collapse')) {
-            element.classList.remove('table-collapse');
-            this.innerText = 'Lihat Lebih Sedikit';
-        } else {
-            element.classList.add('table-collapse');
-            this.innerText = 'Lihat Lebih Banyak';
-        }
+        const elements: any = document.querySelectorAll('.table-more');
+        elements.forEach((element: any) => {
+            if (hasClass(element, 'table-collapse')) {
+                element.classList.remove('table-collapse');
+                this.innerText = 'Lihat Lebih Sedikit';
+            } else {
+                element.classList.add('table-collapse');
+                this.innerText = 'Lihat Lebih Banyak';
+            }
+        });
     }
 
     /**
@@ -53,7 +55,7 @@
             <BlockHeader title="Kasus Berdasarkan Provinsi" />
             <p>Semua kasus di 34 provinsi Indonesia.</p>
         </div>
-        <div class="province-table table-collapse" id="table-province">
+        <div class="province-table" id="table-province">
             <table>
                 <thead>
                     <tr>
@@ -64,8 +66,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {#each provinces as data}
-                        <tr>
+                    {#each provinces as data, i}
+                        <tr class={i < 10 ? 'table-row' : 'table-row table-more table-collapse'}>
                             <td>{data.key}</td>
                             <td>{data.jumlah_kasus}</td>
                             <td>{data.jumlah_sembuh}</td>
@@ -97,9 +99,6 @@
         border-radius: 6px;
         box-shadow: 1px 2px 6px rgba(0,0,0,.12);
     }
-    .ui-province .province-table.table-collapse {
-        height: 472px;
-    }
     .ui-province .province-table table {
         width: 100%;
         border-collapse: collapse;
@@ -118,6 +117,9 @@
         font-size: 1.45rem;
         line-height: 1.3;
         border: 1px solid rgba(0,0,0,.06);
+    }
+    .ui-province .province-table table tbody .table-collapse {
+        display: none;
     }
     .ui-province .province-action {
         margin-top: 32px;
