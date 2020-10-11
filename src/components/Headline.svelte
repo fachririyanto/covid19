@@ -1,9 +1,20 @@
+<script lang="ts">
+    /**
+     * Get current date.
+     */
+    const monthName: Array<string> = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const date: Date = new Date();
+</script>
+
 <header class="ui-headline" id="ui-headline">
     <div class="container">
         <div class="ui-editor">
             <h1>Indonesia Darurat<br/><span>Covid-19</span></h1>
             <p>
-                Last Update 9 October 2020.<br/>
+                Last Update {date.getDate() + ' ' + monthName[date.getMonth()] + ' ' + date.getFullYear()}.<br/>
                 Collecting data from <a href="https://data.covid19.go.id">https://data.covid19.go.id</a>
             </p>
         </div>
