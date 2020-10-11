@@ -21,8 +21,6 @@
             let start: number = 0;
             let mod: number = 0;
 
-            // 90 4 -> 0, 89, 22.5, 45
-
             if (window.innerWidth <= 480) {
                 start = labels.length - 30;
                 mod   = 30;
