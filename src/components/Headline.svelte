@@ -27,7 +27,7 @@
     }
     .ui-headline h1 {
         margin: 0 0 16px;
-        font-size: 3.2rem;
+        font-size: 4.4rem;
         font-weight: bold;
         line-height: 1.1;
     }
