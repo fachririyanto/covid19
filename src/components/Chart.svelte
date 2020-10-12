@@ -35,12 +35,12 @@
                 mod   = Math.ceil(labels.length / 5);
             }
 
-            datalabels = labels.filter((label: string, index: number) => {
+            datalabels = start === 0 ? labels : labels.filter((label: string, index: number) => {
                 if (index >= start) {
                     return label;
                 }
             });
-            datasets = items.filter((item: any, index: number) => {
+            datasets = start === 0 ? items : items.filter((item: any, index: number) => {
                 if (index >= start) {
                     return item;
                 }
