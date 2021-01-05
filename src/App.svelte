@@ -4,6 +4,7 @@
 	import UIAbout from './components/About.svelte';
 	import UIChart from './components/Chart.svelte';
 	import UIProvince from './components/Province.svelte';
+	import UINews from './components/News.svelte';
 	import UIQuote from './components/Quote.svelte';
 	import UIFooter from './components/Footer.svelte';
 </script>
@@ -14,6 +15,7 @@
 	<UIChart />
 	<UIAbout />
 	<UIProvince />
+	<UINews />
 	<UIQuote />
 	<UIFooter />
 </main>
