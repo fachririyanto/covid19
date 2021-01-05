@@ -1,8 +1,10 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { getDayId } from '../Helper.svelte';
     import BlockHeader from './BlockHeader.svelte';
 
     // define initial state
+    let currentDayId: string = '';
     let responses: any = false;
     let news: Array<any> = [];
     let totalPlaceholder: number = 0;
@@ -20,10 +22,21 @@
      * When document is ready.
      */
      onMount(async () => {
-        responses = await fetch('https://fachririyanto.com/wp-json/covid-19/v1/news');
-        responses = await responses.json();
+        /**
+         * Fetch data from API.
+         */
+        currentDayId = localStorage.getItem('covid19_last_update');
+        responses    = localStorage.getItem('covid19_news');
+        if (responses && getDayId() === currentDayId) {
+            responses = JSON.parse(responses);
+        } else {
+            responses = await fetch('https://fachririyanto.com/wp-json/covid-19/v1/news');
+            responses = await responses.json();
 
-        // set news data
+            // save to cache
+            localStorage.setItem('covid19_last_update', getDayId());
+            localStorage.setItem('covid19_news', JSON.stringify(responses));
+        }
         news = responses;
      });
 </script>
