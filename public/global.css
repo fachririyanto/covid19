@@ -34,6 +34,16 @@ a {
     }
 }
 
+.overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
 .ui-container {
     padding: 40px 0;
 }
@@ -67,6 +77,8 @@ a {
     font-weight: 500;
     color: #fff;
     line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
     background-color: #222;
     border-radius: 4px;
     outline: 0;
