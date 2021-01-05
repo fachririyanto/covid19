@@ -7,21 +7,21 @@
     let news: Array<any> = [];
     let totalPlaceholder: number = 0;
 
+    // define total placeholder
+    if (window.innerWidth > 768) {
+        totalPlaceholder = 3;
+    } else if (window.innerWidth > 480) {
+        totalPlaceholder = 2;
+    } else {
+        totalPlaceholder = 1;
+    }
+
     /**
      * When document is ready.
      */
      onMount(async () => {
         responses = await fetch('https://fachririyanto.com/wp-json/covid-19/v1/news');
         responses = await responses.json();
-
-        // define total placeholder
-        if (window.innerWidth > 768) {
-            totalPlaceholder = 3;
-        } else if (window.innerWidth > 480) {
-            totalPlaceholder = 2;
-        } else {
-            totalPlaceholder = 1;
-        }
 
         // set news data
         news = responses;
